@@ -1,17 +1,17 @@
 <?php
-// .env dosyasını oku
-$env = parse_ini_file(__DIR__ . '/../.env');
+require_once __DIR__ . '/../vendor/autoload.php'; // vendor yolunu düzelttik
 
-// ENV değerlerini değişkenlere al
-$host = $env['DB_HOST'];
-$db   = $env['DB_NAME'];
-$user = $env['DB_USER'];
-$pass = $env['DB_PASS'];
-$port = $env['DB_PORT'];
+$host = '127.0.0.1';
+$db   = 'psikolog_db';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;port=$port;charset=utf8", $user, $pass);
+    $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Veritabanına bağlanılamadı: " . $e->getMessage());
+} catch (\PDOException $e) {
+    die('Bağlantı hatası: ' . $e->getMessage());
 }
