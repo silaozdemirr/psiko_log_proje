@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danışan Paneli </title>
+    <link rel="stylesheet" href="../css/hasta_randevular.css">
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMobileSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="logo">👤</div>
+            <div class="user-info-header">
+                <div class="user-name">Yeşim Aydın</div>
+                <div class="user-id">Danışan ID: #1234</div>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-section-title">MENÜ</div>
+            <ul>
+                <li>
+                    <a href="hasta_ekrani.html" onclick="showPage('dashboard')">
+                        <span class="icon">🏠</span>
+                        <span>Ana Sayfa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="hasta_randevular.html" class="active" onclick="showPage('randevu')">
+                        <span class="icon">📅</span>
+                        <span>Randevularım</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="hasta_odeme.html" onclick="showPage('odemeler')">
+                        <span class="icon">💳</span>
+                        <span>Ödemelerim</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logout()">
+                <span>🚪</span>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="navbar">Randevularım</div>
+
+    <div class="container">
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Seans Türü</th>
+                        <th>Durum</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody id="apptTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../js/hasta_randevular.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danışan Profili</title>
+    <link rel="stylesheet" href="../css/danisan_detay.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo Bölümü -->
+        <div class="logo-container">
+            <div class="logo">🧠</div>
+            <div class="clinic-name">Psiko Panel</div>
+        </div>
+
+        <!-- Menü Konteyneri -->
+        <div class="menu-container">
+            <!-- Ana Menü -->
+            <div class="menu-section-title">ANA MENÜ</div>
+            <ul>
+                <li>
+                    <a href="yonetici_ekrani.html" onclick="loadPage('dashboard')">
+                        <span class="icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Randevular -->
+            <div class="menu-section-title">RANDEVU YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="randevu_takvimi.html" onclick="loadPage('dashboard')">
+                        <span class="icon">📅</span>
+                        <span>Randevu Takvimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_ekleme.html" onclick="loadPage('randevular')">
+                        <span class="icon">➕</span>
+                        <span>Randevu Ekleme</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_duzenle.html" onclick="loadPage('randevular')">
+                        <span class="icon">🔄</span>
+                        <span>Randevu Düzenle / İptal Et</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <!-- Danışan Yönetimi -->
+            <div class="menu-section-title">DANIŞAN YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="danisan_listesi.html" onclick="loadPage('danisanlar')">
+                        <span class="icon">👥</span>
+                        <span>Danışan Listesi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="danisan_detay.html" class="active" onclick="loadPage('seans-gecmisi')">
+                        <span class="icon">📋</span>
+                        <span>Danışan Profili</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Finans -->
+            <div class="menu-section-title">ÖDEME VE GELİR YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="odeme_listesi.html" onclick="loadPage('odemeler')">
+                        <span class="icon">💳</span>
+                        <span>Ödemeler</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gelir_raporlama.html" onclick="loadPage('gelir-raporlari')">
+                        <span class="icon">💰</span>
+                        <span>Gelir Raporları</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Raporlar -->
+            <div class="menu-section-title">RAPORLAR</div>
+            <ul>
+                <li>
+                    <a href="istatistikler.html" onclick="loadPage('istatistikler')">
+                        <span class="icon">📈</span>
+                        <span>İstatistikler ve Analizler</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <!-- Kullanıcı Bilgisi -->
+            <div class="user-info">
+                <div class="user-avatar">AY</div>
+                <div class="user-details">
+                    <div class="user-name">Yeşim Aydın</div>
+                    <div class="user-role">Yönetici</div>
+                </div>
+            </div>
+            
+            <!-- Çıkış Butonu -->
+            <button class="logout-btn" onclick="logout()">
+                <span class="icon">🔚</span>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="container">
+        <h1 id="danisan-isim">Danışan Profili</h1>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="genel">Genel Bilgiler</button>
+            <button class="tab" data-tab="randevu">Randevu Geçmişi</button>
+            <button class="tab" data-tab="notlar">Seans Notları</button>
+            <button class="tab" data-tab="odeme">Ödeme Geçmişi</button>
+        </div>
+
+        <!-- GENEL BİLGİLER -->
+        <div class="tab-content active" id="genel">
+            <h2>Genel Bilgiler</h2>
+            <p><strong>Telefon:</strong> <span id="g-tel"></span></p>
+            <p><strong>Seans Türü:</strong> <span id="g-seans"></span></p>
+        </div>
+
+        <!-- RANDEVU GEÇMİŞİ -->
+        <div class="tab-content" id="randevu">
+            <h2>Randevu Geçmişi</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Seans Türü</th>
+                        <th>Notlar</th>
+                        <th>Ücret</th>
+                    </tr>
+                </thead>
+                <tbody id="randevu-body"></tbody>
+            </table>
+        </div>
+
+        <!-- SEANS NOTLARI -->
+        <div class="tab-content" id="notlar">
+            <h2>Seans Notları</h2>
+            <textarea id="seans-not" placeholder="Bu danışana ait notları yazın..."></textarea>
+            <button id="pdf-btn">PDF Olarak Dışa Aktar</button>
+        </div>
+
+        <!-- ÖDEME GEÇMİŞİ -->
+        <div class="tab-content" id="odeme">
+            <h2>Ödeme Geçmişi</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Tutar</th>
+                        <th>Durum</th>
+                    </tr>
+                </thead>
+                <tbody id="odeme-body"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <!-- Mobil Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+    <script src="../js/danisan_detay.js"></script>
+</body>
+</html>

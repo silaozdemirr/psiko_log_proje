@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psikolog Kliniği Yönetici Paneli</title>
+    <link rel="stylesheet" href="../css/yonetici_ekrani.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo Bölümü -->
+        <div class="logo-container">
+            <div class="logo">🧠</div>
+            <div class="clinic-name">Psiko Panel</div>
+        </div>
+
+        <!-- Menü Konteyneri -->
+        <div class="menu-container">
+            <!-- Ana Menü -->
+            <div class="menu-section-title">ANA MENÜ</div>
+            <ul>
+                <li>
+                    <a href="yonetici_ekrani.html" class="active" onclick="loadPage('dashboard')">
+                        <span class="icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Randevular -->
+            <div class="menu-section-title">RANDEVU YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="randevu_takvimi.html" onclick="loadPage('dashboard')">
+                        <span class="icon">📅</span>
+                        <span>Randevu Takvimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_ekleme.html" onclick="loadPage('randevular')">
+                        <span class="icon">➕</span>
+                        <span>Randevu Ekleme</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_duzenle.html" onclick="loadPage('randevular')">
+                        <span class="icon">🔄</span>
+                        <span>Randevu Düzenle / İptal Et</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <!-- Danışan Yönetimi -->
+            <div class="menu-section-title">DANIŞAN YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="danisan_listesi.html" onclick="loadPage('danisanlar')">
+                        <span class="icon">👥</span>
+                        <span>Danışan Listesi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="danisan_detay.html" onclick="loadPage('seans-gecmisi')">
+                        <span class="icon">📋</span>
+                        <span>Danışan Profili</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Finans -->
+            <div class="menu-section-title">ÖDEME VE GELİR YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="odeme_listesi.html" onclick="loadPage('odemeler')">
+                        <span class="icon">💳</span>
+                        <span>Ödemeler</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gelir_raporlama.html" onclick="loadPage('gelir-raporlari')">
+                        <span class="icon">💰</span>
+                        <span>Gelir Raporları</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Raporlar -->
+            <div class="menu-section-title">RAPORLAR</div>
+            <ul>
+                <li>
+                    <a href="istatistikler.html" onclick="loadPage('istatistikler')">
+                        <span class="icon">📈</span>
+                        <span>İstatistikler ve Analizler</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <!-- Kullanıcı Bilgisi -->
+            <div class="user-info">
+                <div class="user-avatar">AY</div>
+                <div class="user-details">
+                    <div class="user-name">Yeşim Aydın</div>
+                    <div class="user-role">Yönetici</div>
+                </div>
+            </div>
+            
+            <!-- Çıkış Butonu -->
+            <button class="logout-btn" onclick="logout()">
+                <span class="icon">🔚</span>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Mobil Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- Ana İçerik -->
+    <main id="mainContent">
+        <div class="breadcrumb">Ana Sayfa / Dashboard</div>
+
+        <section class="upper-content">
+
+            <!-- Dashboard Kartları -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Bugünkü Randevular</span>
+                        <span class="card-icon">📅</span>
+                    </div>
+                    <div class="card-value">12</div>
+                    <div class="card-footer">↑ 3 yeni randevu</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Bu Ay Gerçekleşen Randevu Sayısı</span>
+                        <span class="card-icon">👥</span>
+                    </div>
+                    <div class="card-value">48</div>
+                    <div class="card-footer">↑ 5 yeni danışan</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Bu Ayın Toplam Geliri</span>
+                        <span class="card-icon">💰</span>
+                    </div>
+                    <div class="card-value">₺45,200</div>
+                    <div class="card-footer">↑ %12 artış</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">İptal Oranı</span>
+                        <span class="card-icon">❌</span>
+                    </div>
+                    <div class="card-value">↑ %2 artış</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Bekleyen Ödemeler</span>
+                        <span class="card-icon">⏳</span>
+                    </div>
+                    <div class="card-value">₺8,500</div>
+                    <div class="card-footer negative">↓ 3 ödeme bekleniyor</div>
+                </div>
+        </section>
+        </div>
+
+        <section class="dashboard-section">
+            <div class="grid-container">
+            <!-- Aylık Randevu Grafiği -->
+            <div class="chart-item">
+                <h2>Aylık Randevu Sayısı</h2>
+                <form id="top-sales-form">
+                    <label for="top-sales-year">Yıl:</label>
+                    <select id="top-sales-year">
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                    </select>
+                    <button type="submit">Filtrele</button>
+                </form>
+                <canvas id="aylikRandevu"></canvas>
+            </div>
+
+            <!-- Seans türleri Dağılımı -->
+            <div class="chart-item">
+                <h2>Seans Türlerinin Dağılımı </h2>
+                <form id="top-sales-form">
+                    <label for="top-sales-year">Yıl:</label>
+                    <select id="top-sales-year">
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                    </select>
+                    <button type="submit">Filtrele</button>
+                </form>
+                <canvas id="seansDagilimi"></canvas>
+            </div>
+
+            <!-- Aylara Göre Gelir Analizi -->
+            <div class="chart-item">
+                <h2> Aylara Göre Gelir Analizi</h2>
+                <form id="top-sales-form">
+                    <label for="top-sales-year">Yıl:</label>
+                    <select id="top-sales-year">
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                    </select>
+                    <button type="submit">Filtrele</button>
+                </form>
+                <canvas id="aylikGelir"></canvas>
+            </div>
+
+            <!-- Gün saat yoğunluk  -->
+            <div class="chart-item">
+                <h2>📊 Gün/Saat Yoğunluk Analizi</h2>
+                <table id="heatmap"></table>
+            </div>
+        </section>
+
+
+    </main>
+    <script src="../js/yonetici_ekrani.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danışan Paneli </title>
+    <link rel="stylesheet" href="../css/hasta_ekrani.css">
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMobileSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="logo">👤</div>
+            <div class="user-info-header">
+                <div class="user-name">Yeşim Aydın</div>
+                <div class="user-id">Danışan ID: #1234</div>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-section-title">MENÜ</div>
+            <ul>
+                <li>
+                    <a href="hasta_ekrani.html" class="active" onclick="showPage('dashboard')">
+                        <span class="icon">🏠</span>
+                        <span>Ana Sayfa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="hasta_randevular.html" onclick="showPage('randevu')">
+                        <span class="icon">📅</span>
+                        <span>Randevularım</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="hasta_odeme.html" onclick="showPage('odemeler')">
+                        <span class="icon">💳</span>
+                        <span>Ödemelerim</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logout()">
+                <span>🚪</span>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+     <!-- Main Content -->
+    <main>
+        <div class="navbar">Danışan Paneli</div>
+
+        <div class="dashboard-container">
+            <!-- Yaklaşan Randevular -->
+            <div class="card">
+                <h2>Yaklaşan Randevularım</h2>
+                <div id="upcomingRandevular"></div>
+            </div>
+
+            <!-- Ödeme Durumu -->
+            <div class="card">
+                <h2>Ödeme Durumu</h2>
+                <canvas id="paymentChart" style="max-height: 300px;"></canvas>
+                <table class="table" id="paymentTable">
+                    <thead>
+                        <tr>
+                            <th>Tarih</th>
+                            <th>Tutar</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS ile doldurulacak -->
+                    </tbody>
+                </table>
+            </div>
+    </main>
+
+    <!-- Randevu Modal -->
+    <div class="modal" id="randevuModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Randevu Onayı</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="randevuDetails"></div>
+            <div class="modal-actions"></div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="closeModal()">İptal</button>
+                <button class="btn btn-success" onclick="confirmAppointment()">✓ Onayla</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/hasta_ekrani.js"></script>
+</body>
+</html>
