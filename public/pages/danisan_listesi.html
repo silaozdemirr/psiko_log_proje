@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danışan Listesi</title>
+    <link rel="stylesheet" href="../css/danisan_listesi.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo Bölümü -->
+        <div class="logo-container">
+            <div class="logo">🧠</div>
+            <div class="clinic-name">Psiko Panel</div>
+        </div>
+
+        <!-- Menü Konteyneri -->
+        <div class="menu-container">
+            <!-- Ana Menü -->
+            <div class="menu-section-title">ANA MENÜ</div>
+            <ul>
+                <li>
+                    <a href="yonetici_ekrani.html"  onclick="loadPage('dashboard')">
+                        <span class="icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Randevular -->
+            <div class="menu-section-title">RANDEVU YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="randevu_takvimi.html"  onclick="loadPage('dashboard')">
+                        <span class="icon">📅</span>
+                        <span>Randevu Takvimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_ekleme.html" onclick="loadPage('randevular')">
+                        <span class="icon">➕</span>
+                        <span>Randevu Ekleme</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_duzenle.html" onclick="loadPage('randevular')">
+                        <span class="icon">🔄</span>
+                        <span>Randevu Düzenle / İptal Et</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <!-- Danışan Yönetimi -->
+            <div class="menu-section-title">DANIŞAN YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="danisan_listesi.html" class="active" onclick="loadPage('danisanlar')">
+                        <span class="icon">👥</span>
+                        <span>Danışan Listesi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="danisan_detay.html" onclick="loadPage('seans-gecmisi')">
+                        <span class="icon">📋</span>
+                        <span>Danışan Profili</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Finans -->
+            <div class="menu-section-title">ÖDEME VE GELİR YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="odeme_listesi.html" onclick="loadPage('odemeler')">
+                        <span class="icon">💳</span>
+                        <span>Ödemeler</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gelir_raporlama.html" onclick="loadPage('gelir-raporlari')">
+                        <span class="icon">💰</span>
+                        <span>Gelir Raporları</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Raporlar -->
+            <div class="menu-section-title">RAPORLAR</div>
+            <ul>
+                <li>
+                    <a href="istatistikler.html" onclick="loadPage('istatistikler')">
+                        <span class="icon">📈</span>
+                        <span>İstatistikler ve Analizler</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <!-- Kullanıcı Bilgisi -->
+            <div class="user-info">
+                <div class="user-avatar">YA</div>
+                <div class="user-details">
+                    <div class="user-name">Yeşim Aydın</div>
+                    <div class="user-role">Yönetici</div>
+                </div>
+            </div>
+            
+            <!-- Çıkış Butonu -->
+            <button class="logout-btn" onclick="logout()">
+                <span class="icon">🔚</span>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="container">
+        <h1>Danışan Listesi</h1>
+
+        <table id="danisan-table">
+            <thead>
+                <tr>
+                    <th>Ad – Soyad</th>
+                    <th>Telefon</th>
+                    <th>Seans Türü</th>
+                    <th>Son Randevu</th>
+                    <th>Borç Durumu</th>
+                    <th>Detay</th>
+                </tr>
+            </thead>
+            <tbody id="danisan-body">
+                <!-- JS ile doldurulacak -->
+            </tbody>
+        </table>
+    </div>
+
+    
+    <!-- Mobil Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+    <script src="../js/danisan_listesi.js"></script>
+</body>
+</html>

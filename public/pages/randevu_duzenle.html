@@ -1,0 +1,198 @@
+<!DOCTYPE html>a
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psikolog Kliniği Randevu Düzenle</title>
+    <link rel="stylesheet" href="../css/randevu_duzenle.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo Bölümü -->
+        <div class="logo-container">
+            <div class="logo">🧠</div>
+            <div class="clinic-name">Psiko Panel</div>
+        </div>
+
+        <!-- Menü Konteyneri -->
+        <div class="menu-container">
+            <!-- Ana Menü -->
+            <div class="menu-section-title">ANA MENÜ</div>
+            <ul>
+                <li>
+                    <a href="yonetici_ekrani.html" onclick="loadPage('dashboard')">
+                        <span class="icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Randevular -->
+            <div class="menu-section-title">RANDEVU YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="randevu_takvimi.html" onclick="loadPage('dashboard')">
+                        <span class="icon">📅</span>
+                        <span>Randevu Takvimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_ekleme.html" onclick="loadPage('randevular')">
+                        <span class="icon">➕</span>
+                        <span>Randevu Ekleme</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="randevu_duzenle.html" class="active" onclick="loadPage('randevular')">
+                        <span class="icon">🔄</span>
+                        <span>Randevu Düzenle / İptal Et</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <!-- Danışan Yönetimi -->
+            <div class="menu-section-title">DANIŞAN YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="danisan_listesi.html" onclick="loadPage('danisanlar')">
+                        <span class="icon">👥</span>
+                        <span>Danışan Listesi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="danisan_detay.html" onclick="loadPage('seans-gecmisi')">
+                        <span class="icon">📋</span>
+                        <span>Danışan Profili</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Finans -->
+            <div class="menu-section-title">ÖDEME VE GELİR YÖNETİMİ</div>
+            <ul>
+                <li>
+                    <a href="odeme_listesi.html" onclick="loadPage('odemeler')">
+                        <span class="icon">💳</span>
+                        <span>Ödemeler</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gelir_raporlama.html" onclick="loadPage('gelir-raporlari')">
+                        <span class="icon">💰</span>
+                        <span>Gelir Raporları</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Raporlar -->
+            <div class="menu-section-title">RAPORLAR</div>
+            <ul>
+                <li>
+                    <a href="istatistikler.html" onclick="loadPage('istatistikler')">
+                        <span class="icon">📈</span>
+                        <span>İstatistikler ve Analizler</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <!-- Kullanıcı Bilgisi -->
+            <div class="user-info">
+                <div class="user-avatar">AY</div>
+                <div class="user-details">
+                    <div class="user-name">Yeşim Aydın</div>
+                    <div class="user-role">Yönetici</div>
+                </div>
+            </div>
+            
+            <!-- Çıkış Butonu -->
+            <button class="logout-btn" onclick="logout()">
+                <span class="icon">🔚</span>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+        <!-- ANA ALAN -->
+    <main class="main-content">
+        <header class="page-header">
+            <h1>✏ Randevu Düzenle / İptal Et</h1>
+            <p class="sub">Kart, tablo veya takvim görünümünde randevuları yönet.</p>
+        </header>
+
+        <section class="controls">
+            <input id="searchInput" type="text" placeholder="Danışan adı ara..." />
+            <select id="durumFilter">
+                <option value="">Tüm Durumlar</option>
+                <option>Onaylandı</option>
+                <option>Beklemede</option>
+                <option>Tamamlandı</option>
+                <option>İptal edildi</option>
+            </select>
+
+            <select id="sortSelect">
+                <option value="">Sıralama Yok</option>
+                <option value="tarihAsc">Tarihe Göre (Artan)</option>
+                <option value="tarihDesc">Tarihe Göre (Azalan)</option>
+            </select>
+
+            <div class="view-buttons">
+                <button id="btn-cards" class="view-btn active" onclick="changeView('cards')">Kart</button>
+                <button id="btn-table" class="view-btn" onclick="changeView('table')">Tablo</button>
+                <button id="btn-calendar" class="view-btn" onclick="changeView('calendar')">Takvim</button>
+            </div>
+
+            <button class="add-btn" onclick="openAddNew()">+ Yeni Randevu</button>
+        </section>
+
+        <!-- RANDEVU LİSTESİ (Kart / Tablo) -->
+        <div id="randevuList" class="list-area"></div>
+
+        <!-- TAKVIM -->
+        <div id="calendar" style="display:none;"></div>
+    </main>
+
+    <!-- MODAL -->
+    <div id="editModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <h2 id="modalTitle">Randevu Düzenle</h2>
+
+            <label>Danışan Adı</label>
+            <input id="editDanisan" type="text" placeholder="Danışan adı">
+
+            <label>Tarih</label>
+            <input id="editTarih" type="date">
+
+            <label>Saat</label>
+            <input id="editSaat" type="time">
+
+            <label>Durum</label>
+            <select id="editDurum">
+                <option>Onaylandı</option>
+                <option>Beklemede</option>
+                <option>Tamamlandı</option>
+                <option>İptal edildi</option>
+            </select>
+
+            <div class="modal-buttons">
+                <button class="save" onclick="kaydetDegisiklik()">Kaydet</button>
+                <button class="close" onclick="closeModal()">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+
+    <!-- Mobil Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+    <script src="../js/randevu_duzenle.js"></script>
+</body>
+</html>

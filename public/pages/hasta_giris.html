@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasta Girişi</title>
+    <link rel="stylesheet" href="../css/hasta_giris.css">
+</head>
+<body>
+    <div class="login-form">
+        <img src="../images/logo.jpg" alt="Logo">
+        <h2>Hasta Girişi</h2>
+        <form onsubmit="girisYap(event)">
+            <input type="text" id="ad" placeholder="Ad" required>
+            <input type="text" id="soyad" placeholder="Soyad" required>
+            <input type="password" id="sifre" placeholder="Şifre" required>
+            <button type="submit">Giriş Yap</button>
+        </form>
+    </div>
+    
+    <script src="../js/hasta_giris.js"></script>
+</body>
+</html>
